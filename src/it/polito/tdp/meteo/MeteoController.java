@@ -19,7 +19,7 @@ public class MeteoController {
 	private URL location;
 
 	@FXML
-	private ChoiceBox<?> boxMese;
+	private ChoiceBox<Integer> boxMese;
 
 	@FXML
 	private Button btnCalcola;
@@ -29,6 +29,15 @@ public class MeteoController {
 
 	@FXML
 	private TextArea txtResult;
+	
+	
+	public void setModel(Model model) {
+		// TODO Auto-generated method stub
+		this.model=model;
+		this.boxMese.getItems().addAll(model.getMesi());
+	}
+	
+
 
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
@@ -37,8 +46,11 @@ public class MeteoController {
 
 	@FXML
 	void doCalcolaUmidita(ActionEvent event) {
+		this.txtResult.clear();
+		this.txtResult.appendText(model.getUmiditaMedia(this.boxMese.getValue()));
 
 	}
+	
 
 	@FXML
 	void initialize() {
@@ -46,11 +58,10 @@ public class MeteoController {
 		assert btnCalcola != null : "fx:id=\"btnCalcola\" was not injected: check your FXML file 'Meteo.fxml'.";
 		assert btnUmidita != null : "fx:id=\"btnUmidita\" was not injected: check your FXML file 'Meteo.fxml'.";
 		assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Meteo.fxml'.";
+		
+		
 	}
 
-	public void setModel(Model model) {
-		// TODO Auto-generated method stub
-		this.model=model;
-	}
+	
 
 }

@@ -1,8 +1,11 @@
 package it.polito.tdp.meteo;
 
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 
 import it.polito.tdp.meteo.bean.SimpleCity;
+import it.polito.tdp.meteo.db.MeteoDAO;
 
 public class Model {
 
@@ -10,6 +13,8 @@ public class Model {
 	private final static int NUMERO_GIORNI_CITTA_CONSECUTIVI_MIN = 3;
 	private final static int NUMERO_GIORNI_CITTA_MAX = 6;
 	private final static int NUMERO_GIORNI_TOTALI = 15;
+	
+	MeteoDAO md= new MeteoDAO();
 
 	public Model() {
 
@@ -17,7 +22,7 @@ public class Model {
 
 	public String getUmiditaMedia(int mese) {
 
-		return "TODO!";
+		return md.getUmiditaMedia(mese);
 	}
 
 	public String trovaSequenza(int mese) {
@@ -34,6 +39,10 @@ public class Model {
 	private boolean controllaParziale(List<SimpleCity> parziale) {
 
 		return true;
+	}
+
+	public HashSet<Integer> getMesi() {
+		return md.getMesi() ;
 	}
 
 }
